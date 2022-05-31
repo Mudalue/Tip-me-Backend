@@ -3,7 +3,7 @@ import bodyParser from 'body-parser'
 import cors from 'cors'
 import helmet from 'helmet'
 import morgan from 'morgan'
-
+import mongoose from 'mongoose';
 const app = express();
 
 const ads = [
@@ -18,7 +18,8 @@ app.use(morgan('combined'));
 app.get('/', (req, res)=> {
     res.send(ads);
 })
-
-app.listen(3001, ()=>{
+//defining port
+const port = process.env.PORT || 3001;
+app.listen(port, ()=>{
     console.log('listening on port 3001');
 })
