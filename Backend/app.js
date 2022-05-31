@@ -19,12 +19,18 @@ app.get("/", (req, res) => {
 });
 //defining port
 const port = process.env.PORT || 3001;
-app.listen(port, async () => {
-  console.log("listening on port 3001");
+
+const start = async () => {
   try {
+    console.log("Connecting to database...");
     await mongoose.connect(db);
-    console.log("Database connected");
+    app.listen(port, async () => {
+      console.log(`listening on port ${port}`);
+    });
   } catch (error) {
-    console.log("Database cant be connected " + error);
+    console.log("Failed to connect to database");
+    console.log(error.message);
   }
-});
+};
+
+start();
