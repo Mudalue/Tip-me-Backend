@@ -25,7 +25,7 @@ console.log(process.env.PASS)
                  </div>
                  <div>
                  <p style="text-align: center; font-weight: 500">Your Authentication code </p>
-                 <h1 style="text-align: center;font-size: 20px; font-weight: 700">${code}</h1>
+                 <h1 style="text-align: center;font-size: 50px; font-weight: 700">${code}</h1>
                  </div>
               </div>
               </body>
@@ -43,6 +43,9 @@ console.log(process.env.PASS)
     return {
       error: true,
       message: "cannot send email",
-    };
+  
+
+
+
   }
 };
