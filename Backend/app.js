@@ -5,13 +5,22 @@ import helmet from "helmet";
 import morgan from "morgan";
 import mongoose from "mongoose";
 import { db } from "./config/index.js";
-import api from './routes/auth.routes'
+// import {api} from './routes/auth.routes.js'
+// import hbs from "hbs";
+import router from "./routes/auth.routes.js";
 const app = express();
-
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
+app.use(express.json());
 app.use(helmet());
 app.use(cors());
 app.use(morgan("combined"));
-app.use('api', api);
+// app.engine('.hbs', hbs);
+// app.set('view engine', '.hbs');
+app.use("/", router);
 
 //defining port
 const port = process.env.PORT || 3001;
