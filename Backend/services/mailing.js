@@ -9,7 +9,6 @@ export const sendEmail = async ({ user, code }) => {
         pass: process.env.PASS,
       },
     });
-console.log(process.env.PASS)
     transporter.sendMail(
       {
         from: "<emekachristian511@gmail.com>",
