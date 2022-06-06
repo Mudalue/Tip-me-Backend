@@ -58,4 +58,25 @@ export const verify = async (req, res, next) => {
 };
 
 //login
-
+export const login = async (req, res)=>{
+let {email, password} = req.body;
+const user = await userSchema.findOne({email});
+if (!user){
+  return res.status(400).json({ message: "user does not exist" })
+}else {
+  try {
+    let jwtToken = jwt.sign({
+      email: user.email,
+      user: user._id
+    }, process.env.SECRET_KEY, {expiresIn: '24h'});
+    res.status(201).json({
+      token: jwtToken,
+      expiresIn: 3600,
+      isSuccess: true,
+      message: 'Login successful'
+    })
+  } catch (error) {
+    return res.status(400).json({message: 'invalid credentials'})
+  }
+}
+}
