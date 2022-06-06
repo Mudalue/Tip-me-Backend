@@ -47,4 +47,4 @@ export const sendEmail = async ({ user, code }) => {
 
 
   }
-};
+}};

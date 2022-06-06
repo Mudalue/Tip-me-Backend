@@ -5,7 +5,6 @@ import helmet from "helmet";
 import morgan from "morgan";
 import mongoose from "mongoose";
 import { db } from "./config/index.js";
-// import {api} from './routes/auth.routes.js'
 // import hbs from "hbs";
 import router from "./routes/auth.routes.js";
 const app = express();
@@ -28,6 +27,7 @@ const start = async () => {
   try {
     console.log("Connecting to database...");
     await mongoose.connect(db);
+    console.log("db connected");
     app.listen(port, async () => {
       console.log(`listening on port ${port}`);
     });
