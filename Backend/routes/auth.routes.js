@@ -9,5 +9,6 @@ router.post(`${url}/signup`, useronboarding);
 //otp verification
 router.post(`${url}/verify`, verify);
 //login
-router.post(`${url}/login`, login)
+router.post(`${url}/login`, login);
+
 export default router;
