@@ -3,12 +3,12 @@ import { useronboarding, verify, login } from "../controllers/user.js";
 import "dotenv/config";
 const router = express.Router();
 
-const url = process.env.URL;
+
 //sign up
-router.post(`${url}/signup`, useronboarding);
+router.post('/signup', useronboarding);
 //otp verification
-router.post(`${url}/verify`, verify);
+router.post('/verify', verify);
 //login
-router.post(`${url}/login`, login);
+router.post('/login', login);
 
 export default router;

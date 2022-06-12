@@ -6,7 +6,8 @@ import morgan from "morgan";
 import mongoose from "mongoose";
 import { db } from "./config/index.js";
 // import hbs from "hbs";
-import router from "./routes/auth.routes.js";
+import user from "./routes/authroutes.js";
+import image from './routes/imageupload.js'
 const app = express();
 app.use(
   express.urlencoded({
@@ -17,9 +18,23 @@ app.use(express.json());
 app.use(helmet());
 app.use(cors());
 app.use(morgan("combined"));
-// app.engine('.hbs', hbs);
-// app.set('view engine', '.hbs');
-app.use("/", router);
+
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  res.setHeader('Access-Control-Allow-Methods', '*')
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+  next()
+})
+
+  app.get('/', (req, res) =>
+  res.status(200).json({
+    error: false,
+    message: 'Blue Collar server is ready to move',
+  }),
+);
+
+app.use("/user", user);
+app.use('/profile', image);
 
 //defining port
 const port = process.env.PORT || 3001;
