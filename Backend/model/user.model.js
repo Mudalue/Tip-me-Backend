@@ -5,6 +5,10 @@ const model = mongoose.model;
 
 let userSchema = new Schema(
   {
+    name: {
+      type: String,
+      unique: false,
+    },
     email: {
       type: String,
       unique: true,
@@ -14,6 +18,14 @@ let userSchema = new Schema(
       required: false,
     },
     otp: {
+      type: String,
+      required: false,
+    },
+    profile_img: {
+      type: String,
+      required: false,
+    },
+    cloudinary_id: {
       type: String,
       required: false,
     },
