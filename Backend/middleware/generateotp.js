@@ -1,9 +1,10 @@
 import otpGenerator from 'otp-generator';
 
 const generateOTP = () =>{
-  const OTP = otpGenerator.generate(10, {
-    upperCaseAlphabets: true,
-    specialChars: false
+  const OTP = otpGenerator.generate(4, {
+    upperCaseAlphabets: false,
+    specialChars: false,
+    lowerCaseAlphabets: false
   });
   return OTP;
 }
