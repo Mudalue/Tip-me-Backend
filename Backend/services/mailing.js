@@ -13,7 +13,7 @@ export const sendEmail = async ({ user, code }) => {
       {
         from: "<emekachristian511@gmail.com>",
         to: user,
-        subject: `Welcome, ${user} `,
+        subject: `Welcome `,
         text: "Copy your one-time passcode to verify your account ",
         html: `<!DOCTYPE> 
             <html>

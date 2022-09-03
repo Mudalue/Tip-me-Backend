@@ -26,6 +26,7 @@ export const useronboarding = async (req, res, next) => {
       return res.status(200).json({
         message: "Check your mail for your otp",
         isSuccess: true,
+        email
       });
     } catch (error) {
       res.status(400).json({
