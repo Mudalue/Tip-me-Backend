@@ -51,7 +51,7 @@ export const verify = async (req, res, next) => {
           message: "otp verification successfull",
           isSuccess: true,
         });
-        user.otp = "";
+        user.updateOne({ email }, { otp: "" });
       }
     } catch (error) {
       console.log(error);
