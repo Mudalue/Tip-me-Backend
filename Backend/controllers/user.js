@@ -5,6 +5,7 @@ import { sendEmail } from "../services/mailing.js";
 
 export const useronboarding = async (req, res, next) => {
   let { email, password } = req.body;
+  console.log(req.body)
   const isExisting = await userSchema.findOne({ email });
   if (isExisting) {
     return res.json("user already exists!");
@@ -40,7 +41,7 @@ export const useronboarding = async (req, res, next) => {
 export const verify = async (req, res, next) => {
   let { email, otp } = req.body;
   const user = await userSchema.findOne({ email });
-  if (!user) {
+  if (user) {
     return res.status(400).json({ message: "email does not exist" });
   } else {
     try {
@@ -53,7 +54,8 @@ export const verify = async (req, res, next) => {
         });
       }
     } catch (error) {
-      return res.status(400).json({ message: "invalid token" });
+      console.log(error)
+      // return res.status(400).json({ message: "invalid token" });
     }
   }
 };
