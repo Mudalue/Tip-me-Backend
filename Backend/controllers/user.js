@@ -42,17 +42,18 @@ export const verify = async (req, res, next) => {
   let { email, otp } = req.body;
   console.log(req.body);
   const user = await userSchema.findOne({ email });
-  console.log(user.otp);
+  console.log(user);
   if (user) {
     try {
       if (user.otp === otp) {
-        await user.updateOne({ email }, { otp: otp });
+       
         res.status(200).json({
           message: "otp verification successfull",
           isSuccess: true,
         });
-        user.updateOne({ email }, { otp: "" });
+        await user.updateOne( {otp: undefined} );
       }
+      console.log(user)
     } catch (error) {
       console.log(error);
       return res.status(400).json({ message: "invalid token" });
