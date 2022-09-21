@@ -1,5 +1,4 @@
 import express from "express";
-import bodyParser from "body-parser";
 import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
@@ -7,8 +6,9 @@ import mongoose from "mongoose";
 import { db } from "./config/index.js";
 // import hbs from "hbs";
 import user from "./routes/authroutes.js";
-import image from './routes/imageupload.js';
-import webhook from './hooks/webhook.js';
+import image from "./routes/imageupload.js";
+import webhook from "./hooks/webhook.js";
+import transaction from "./routes/transactionRoutes.js";
 const app = express();
 app.use(
   express.urlencoded({
@@ -21,22 +21,23 @@ app.use(cors());
 app.use(morgan("combined"));
 
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*')
-  res.setHeader('Access-Control-Allow-Methods', '*')
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization')
-  next()
-})
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "*");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  next();
+});
 
-  app.get('/', (req, res) =>
+app.get("/", (req, res) =>
   res.status(200).json({
     error: false,
-    message: 'Blue Collar server is ready to move',
-  }),
+    message: "Blue Collar server is ready to move",
+  })
 );
 
 app.use("/user", user);
-app.use('/profile', image);
-app.use('/tipp', webhook)
+app.use("/profile", image);
+app.use("/tipp", webhook);
+app.use("/mono", transaction);
 //defining port
 const port = process.env.PORT || 3001;
 const start = async () => {

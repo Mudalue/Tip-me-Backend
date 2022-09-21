@@ -1,14 +1,14 @@
 import express from "express";
 import { useronboarding, verify, login } from "../controllers/user.js";
 import "dotenv/config";
+import { authentication } from "../middleware/auth.js";
 const router = express.Router();
 
-
 //sign up
-router.post('/signup', useronboarding);
+router.post("/signup", useronboarding);
 //otp verification
-router.post('/verify', verify);
+router.post("/verify", authentication, verify);
 //login
-router.post('/login', login);
+router.post("/login", authentication, login);
 
 export default router;
