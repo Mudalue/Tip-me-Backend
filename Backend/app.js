@@ -7,7 +7,8 @@ import mongoose from "mongoose";
 import { db } from "./config/index.js";
 // import hbs from "hbs";
 import user from "./routes/authroutes.js";
-import image from './routes/imageupload.js'
+import image from './routes/imageupload.js';
+import webhook from './hooks/webhook.js';
 const app = express();
 app.use(
   express.urlencoded({
@@ -35,7 +36,7 @@ app.use((req, res, next) => {
 
 app.use("/user", user);
 app.use('/profile', image);
-
+app.use('/tipp', webhook)
 //defining port
 const port = process.env.PORT || 3001;
 const start = async () => {
