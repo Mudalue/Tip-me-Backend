@@ -6,7 +6,7 @@ const API = axios.create({ baseURL: "https://api.withmono.com/issuing/v1/" });
 
 API.interceptors.request.use(
   (config) => {
-    config.headers["Authorization"] = `Bearer ${process.env.MONO_SECRET_KEY}`;
+    config.headers["mono-sec-key"] = `${process.env.MONO_SECRET_KEY}`;
     return config;
   },
   (error) => {
