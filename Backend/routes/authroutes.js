@@ -9,6 +9,6 @@ router.post("/signup", useronboarding);
 //otp verification
 router.post("/verify", authentication, verify);
 //login
-router.post("/login", authentication, login);
+router.post("/login", login);
 
 export default router;
