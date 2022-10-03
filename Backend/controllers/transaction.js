@@ -7,6 +7,6 @@ export const account = async (req, res) => {
     await createAccount({ first_name, last_name, email, phone, bvn });
     console.log(res);
   } catch (error) {
-    console.log(error);
+    console.log(error.data);
   }
 };
