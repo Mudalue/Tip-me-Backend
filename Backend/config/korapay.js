@@ -77,10 +77,26 @@ const korapay = () => {
     }
   };
 
+  const getVirtualBankAccountTransactions = async (
+    { account_number },
+    callback
+  ) => {
+    try {
+      const response = await API.get(
+        `/virtual-bank-account/transactions?account_number=${account_number}`
+      );
+
+      return callback(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return {
     createVirtualBankAccount,
     creditVirtualBankAccount,
     getVirtualBankAccountDetails,
+    getVirtualBankAccountTransactions,
   };
 };
 

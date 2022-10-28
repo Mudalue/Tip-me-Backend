@@ -8,6 +8,7 @@ const {
   createVirtualBankAccount,
   creditVirtualBankAccount,
   getVirtualBankAccountDetails,
+  getVirtualBankAccountTransactions,
 } = korapay();
 
 export const newVirtualBankAccount = async (req, res) => {
@@ -61,6 +62,18 @@ export const virtualBankAccountDetails = async (req, res) => {
         res.json(response.data);
       }
     );
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const virtualBankAccountTransactions = async (req, res) => {
+  const { account_number } = req.params;
+
+  try {
+    await getVirtualBankAccountTransactions({ account_number }, (response) => {
+      res.json(response.data);
+    });
   } catch (error) {
     console.log(error);
   }
