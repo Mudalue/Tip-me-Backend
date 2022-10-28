@@ -5,10 +5,13 @@ import morgan from "morgan";
 import mongoose from "mongoose";
 import { db } from "./config/index.js";
 // import hbs from "hbs";
+
+// Routes
 import user from "./routes/authroutes.js";
 import image from "./routes/imageupload.js";
 import webhook from "./hooks/webhook.js";
-import transaction from "./routes/transactionRoutes.js";
+import korapayRoutes from "./routes/korapayRoutes.js";
+
 const app = express();
 app.use(
   express.urlencoded({
@@ -34,12 +37,14 @@ app.get("/", (req, res) =>
   })
 );
 
+// Middlewares
 app.use("/user", user);
 app.use("/profile", image);
 app.use("/tipp", webhook);
-app.use("/mono", transaction);
+app.use("/korapay", korapayRoutes);
+
 //defining port
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 5000;
 const start = async () => {
   try {
     console.log("Connecting to database...");
