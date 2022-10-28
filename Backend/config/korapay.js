@@ -62,7 +62,26 @@ const korapay = () => {
     }
   };
 
-  return { createVirtualBankAccount, creditVirtualBankAccount };
+  const getVirtualBankAccountDetails = async (
+    { accountReference },
+    callback
+  ) => {
+    try {
+      const response = await API.get(
+        `/virtual-bank-account/${accountReference}`
+      );
+
+      return callback(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return {
+    createVirtualBankAccount,
+    creditVirtualBankAccount,
+    getVirtualBankAccountDetails,
+  };
 };
 
 export default korapay;
