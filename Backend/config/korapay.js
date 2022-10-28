@@ -45,7 +45,24 @@ const korapay = () => {
     }
   };
 
-  return { createVirtualBankAccount };
+  const creditVirtualBankAccount = async (
+    { account_number, amount, currency },
+    callback
+  ) => {
+    try {
+      const response = await API.post("/virtual-bank-account/sandbox/credit", {
+        account_number,
+        amount,
+        currency,
+      });
+
+      return callback(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return { createVirtualBankAccount, creditVirtualBankAccount };
 };
 
 export default korapay;

@@ -1,9 +1,13 @@
 import express from "express";
 
-import { newVirtualBankAccount } from "../controllers/korapayControllers.js";
+import {
+  newVirtualBankAccount,
+  payVirtualBankAccount,
+} from "../controllers/korapayControllers.js";
 
 const router = express.Router();
 
-router.post('/create_account', newVirtualBankAccount);
+router.post("/create_account", newVirtualBankAccount);
+router.post("/credit_account", payVirtualBankAccount);
 
 export default router;
